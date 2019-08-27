@@ -1,0 +1,26 @@
+version: '3'
+services:
+  client:
+    build:
+      context: ./file-manager
+      dockerfile: .docker/dev.dockerfile
+    image: file-manager-client-dev
+    container_name: file-manager-client-dev
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./file-manager/src:/usr/src/app/src
+  mongo:
+    environment:
+      MONGO_INITDB_DATABASE: file-manager
+    volumes:
+      - ./mongo/datastore:/data/db
+      - ./mongo/init/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  server:
+    build:
+      context: ./server
+      dockerfile: .docker/dev.dockerfile
+    image: file-manager-server-dev
+    container_name: file-manager-server-dev
+    ports:
+      - "3000:3000"

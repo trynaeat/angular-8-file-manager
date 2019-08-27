@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server for file-manager",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-changes": "nodemon --watch 'src/**/*' -e ts,tsx --exec ts-node ./src/index.ts"
+  },
+  "author": "Jake Parks",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.8.1",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.49",
+    "@types/koa-router": "^7.0.42",
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}

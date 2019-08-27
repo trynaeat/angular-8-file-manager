@@ -1,0 +1,17 @@
+version: '3'
+services:
+  client:
+    container_name: file-manager-client
+    build:
+      context: ./file-manager
+      dockerfile: .docker/prod.dockerfile
+  mongo:
+    container_name: file-manager-mongo
+    image: mongo:4.2.0
+    ports:
+    - "27017:27017"
+  server:
+    container_name: file-manager-server
+    build:
+      context: ./server
+      dockerfile: .docker/prod.dockerfile
