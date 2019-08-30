@@ -24,3 +24,5 @@ services:
     container_name: file-manager-server-dev
     ports:
       - "3000:3000"
+    volumes:
+      - './server/src:/usr/src/app/src'
