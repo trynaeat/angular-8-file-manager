@@ -73,6 +73,10 @@
             "production": {
               "browserTarget": "file-manager:build:production"
             }
+          },
+          "options": {
+           "sslKey": "./server.key",
+           "sslCert": "./server.crt"
           }
         },
         "extract-i18n": {

@@ -18,7 +18,7 @@ import { ApiModule } from '@api';
     BrowserModule,
     HttpClientModule,
 
-    ApiModule.forRoot({ baseUrl: 'https://server' }),
+    ApiModule.forRoot({ baseUrl: 'https://0.0.0.0:3000' }),
 
     LoginModule,
     AppRoutingModule,

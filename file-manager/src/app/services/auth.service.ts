@@ -15,4 +15,8 @@ export class AuthService {
 
     return token && !helper.isTokenExpired(token);
   }
+
+  public setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
 }
