@@ -5,3 +5,18 @@
 .ng-dirty.ng-invalid:not(form) {
   @extend .is-invalid;
 }
+
+.collapse {
+  display: block !important;
+  transition: height .35s ease;
+  height: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    height: auto;
+    overflow: visible;
+  }
+}

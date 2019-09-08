@@ -6,6 +6,7 @@ import { config } from './config';
 import { MongoClient } from 'mongodb';
 import { initialize } from './auth/auth';
 import { router as loginRoutes } from './routes/login';
+import { router as fileRoutes } from './routes/files';
 import * as https from 'https';
 import * as fs from 'fs';
 
@@ -32,6 +33,7 @@ app.use(bodyParser());
 app.use(initialize());
 
 app.use(loginRoutes.routes())
+  .use(fileRoutes.routes())
   .use(router.routes())
   .use(router.allowedMethods());
 

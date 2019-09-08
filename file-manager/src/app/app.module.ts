@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FileBrowserModule } from './pages/file-browser/file-browser.module';
 import { LoginModule } from './pages/login/login.module';
 import { HeaderModule } from '@components';
 import { HomeComponent } from './pages/home/home.component';
@@ -21,6 +22,7 @@ import { ApiModule } from '@api';
     ApiModule.forRoot({ baseUrl: 'https://0.0.0.0:3000' }),
 
     LoginModule,
+    FileBrowserModule,
     AppRoutingModule,
 
     HeaderModule,

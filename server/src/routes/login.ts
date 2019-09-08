@@ -17,7 +17,9 @@ router.post('/login', async ctx => {
     }
     if(user && passwordHash.verify(password, user.password)) {
       var payload = {
-        id: user._id
+        exp: Math.round(Date.now() / 1000 + 30 * 60), //Expire token in 30 minutes
+        id: user._id,
+        username: user.username,
       };
       var token = jwt.encode(payload, config.jwtSecret);
       ctx.body = {

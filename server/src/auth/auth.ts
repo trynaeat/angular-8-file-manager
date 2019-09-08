@@ -7,7 +7,11 @@ const params = {
 	jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
-function auth(jwt_payload: object, done: Function) {
+function auth(jwt_payload: { id: string, exp: number }, done: Function) {
+	const expiry = jwt_payload.exp;
+	if ((Date.now() / 1000) > expiry) {
+		return done('Token Expired', null);
+	}
 	done(null, jwt_payload);
 }
 
@@ -19,5 +23,5 @@ export function initialize() {
 }
 
 export function authenticate() {
-	return passport.authenticate('jwt');
+	return passport.authenticate('jwt', { session: false });
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { RouterModule } from '@angular/router';
-import { ClickOutsideModule } from '@directives';
+import { ClickOutsideModule, CollapseModule } from '@directives';
 
 
 
@@ -14,6 +14,7 @@ import { ClickOutsideModule } from '@directives';
     RouterModule,
 
     ClickOutsideModule,
+    CollapseModule,
   ]
 })
 export class HeaderModule { }
