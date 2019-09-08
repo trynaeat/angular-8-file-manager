@@ -36,12 +36,24 @@ app.use(loginRoutes.routes())
   .use(router.allowedMethods());
 
 console.log('Connecting to MongoDB');
-MongoClient.connect(config.dbUrl, { useNewUrlParser: true })
-  .then(result => {
+async function connectRetry() {
+  try {
+    const result = await MongoClient.connect(config.dbUrl, { useNewUrlParser: true });
     app.context.mongoDb = result.db('file-manager');
     console.log('Connected to MongoDB instance.');
-    https.createServer(httpsOptions, app.callback())
-      .listen(PORT, HOSTNAME);
+  } catch(e) {
+    console.log('Mongo not available yet, retrying...');
+    await new Promise((resolve: Function) => {
+      setTimeout(async () => {
+        await connectRetry();
+        resolve();
+      }, 2000);
+    });
+  }
+}
+connectRetry().then(() => {
+  https.createServer(httpsOptions, app.callback())
+    .listen(PORT, HOSTNAME);
 
-    console.log(`Server listening on port ${PORT}`);
-  });
+  console.log(`Server listening on port ${PORT}`);
+});

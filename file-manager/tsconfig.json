@@ -21,6 +21,7 @@
     "paths": {
       "@api": ["src/app/api"],
       "@components": ["src/app/components"],
+      "@directives": ["src/app/directives"],
       "@services": ["src/app/services"]
     }
   },

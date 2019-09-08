@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '@api';
-import { AuthService } from '@services';
+import { AuthService, AlertService } from '@services';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
+    private alertService: AlertService,
     private authService: AuthService,
     private loginService: LoginService,
     private router: Router,
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       },
       err => {
+        this.alertService.showAlert(`Error: User not Found or Invalid Credentials`);
         console.log(err);
       }
     );
