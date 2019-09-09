@@ -22,6 +22,7 @@
       "@api": ["src/app/api"],
       "@components": ["src/app/components"],
       "@directives": ["src/app/directives"],
+      "@pipes": ["src/app/pipes"],
       "@services": ["src/app/services"]
     }
   },

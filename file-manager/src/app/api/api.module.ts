@@ -1,4 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { FilesService } from './files/files.service';
 import { LoginService } from './login/login.service';
 import { ApiConfigInterface, ApiConfig } from './api-configuration';
 
@@ -8,6 +9,7 @@ export class ApiModule {
     return {
       ngModule: ApiModule,
       providers: [
+        FilesService,
         LoginService,
         {
           provide: ApiConfig,
