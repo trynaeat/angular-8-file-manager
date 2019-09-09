@@ -36,6 +36,14 @@ export class FileBrowserComponent implements OnInit, OnDestroy {
     this.destroy$.next();
   }
 
+  public download() {
+    this.toastService.pushToast({
+      status: 'info',
+      title: 'Test file name, pretty long file name here...',
+      message: 'Testing 123',
+    });
+  }
+
   private fetchFiles(): Observable<FileListResponse> {
     return this.filesService.getFileList({
       page: 1,

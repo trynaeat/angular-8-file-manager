@@ -1,0 +1,9 @@
+@import "~bootstrap/scss/bootstrap";
+
+i {
+  font-size: 80px;
+}
+
+div[card-image] {
+  background: map-get($grays, "200");
+}
