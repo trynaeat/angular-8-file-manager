@@ -1,12 +1,17 @@
-<app-cards>
-  <app-card *ngFor="let file of data">
-    <div card-image class="p-3 d-flex justify-content-center">
-      <i class="fa fa-file"></i>
-    </div>
-    <span card-title [innerText]="file.filename"></span>
-    <div card-body>
-      <p class="card-text" [innerText]="file.description"></p>
-      <a href="javascript:;" class="btn btn-primary" (click)="download()">Download</a>
-    </div>
-  </app-card>
-</app-cards>
+<div class="mb-3">
+  <app-cards>
+    <app-card *ngFor="let file of data">
+      <div card-image class="p-3 d-flex justify-content-center">
+        <i class="fa fa-file"></i>
+      </div>
+      <span card-title [innerText]="file.filename"></span>
+      <div card-body>
+        <p class="card-text" [innerText]="file.description"></p>
+        <a href="javascript:;" class="btn btn-primary" (click)="download()">Download</a>
+      </div>
+    </app-card>
+  </app-cards>
+</div>
+<div class="pl-1 pr-1">
+  <app-pager [totalItems]="totalItems" pageSize="8" (pageChange)="onPageChange($event)"></app-pager>
+</div>

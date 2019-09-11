@@ -6,3 +6,5 @@ export { ToastComponent } from './toast/toast.component';
 export { Toast, ToastService } from './toast/toast.service';
 export { CardsModule } from './cards/cards.module';
 export { CardsComponent } from './cards/cards.component';
+export { PagerModule } from './pager/pager.module';
+export { PagerComponent } from './pager/pager.component';

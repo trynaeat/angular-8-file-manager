@@ -4,6 +4,10 @@ import { ToastService } from '@components';
 import { Observable, Subject, of } from 'rxjs';
 import { catchError, takeUntil, switchMap } from 'rxjs/operators';
 
+interface RefreshOptions {
+  page: number;
+}
+
 @Component({
   selector: 'app-file-browser',
   templateUrl: './file-browser.component.html',
@@ -12,7 +16,8 @@ import { catchError, takeUntil, switchMap } from 'rxjs/operators';
 export class FileBrowserComponent implements OnInit, OnDestroy {
 
   public data: FileListResponse['data'];
-  private refresh$ = new Subject();
+  public totalItems = 0;
+  private refresh$ = new Subject<RefreshOptions>();
   private destroy$ = new Subject();
   constructor(
     private filesService: FilesService,
@@ -21,15 +26,18 @@ export class FileBrowserComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.refresh$.pipe(
-      switchMap(() => this.fetchFiles()),
+      switchMap(options => this.fetchFiles(options)),
       takeUntil(this.destroy$),
     )
     .subscribe(result => {
       if (result) {
         this.data = result.data;
+        this.totalItems = result.totalCount;
       }
     });
-    this.refresh$.next();
+    this.refresh$.next({
+      page: 1,
+    });
   }
 
   ngOnDestroy() {
@@ -44,10 +52,16 @@ export class FileBrowserComponent implements OnInit, OnDestroy {
     });
   }
 
-  private fetchFiles(): Observable<FileListResponse> {
+  public onPageChange(page: number) {
+    this.refresh$.next({
+      page,
+    });
+  }
+
+  private fetchFiles(options: RefreshOptions): Observable<FileListResponse> {
     return this.filesService.getFileList({
-      page: 1,
-      size: 9,
+      page: options.page,
+      size: 8,
     })
     .pipe(
       catchError(err => {

@@ -8,7 +8,6 @@ import { CardComponent } from './card/card.component';
 })
 export class CardsComponent implements OnInit, AfterContentInit {
   @ContentChildren(CardComponent) public cards: QueryList<CardComponent>;
-  @Input() public rows = 3;
   @Input() public columns = 4;
 
   constructor() { }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileBrowserComponent } from './file-browser.component';
 import { FileBrowserRoutingModule } from './file-browser-routing.module';
-import { CardsModule } from '@components';
+import { CardsModule, PagerModule } from '@components';
 
 
 
@@ -13,6 +13,7 @@ import { CardsModule } from '@components';
 
     FileBrowserRoutingModule,
     CardsModule,
+    PagerModule,
   ],
 })
 export class FileBrowserModule { }
